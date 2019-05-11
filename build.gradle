@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+
+war.archiveName = "spring3.2.war"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+def springVersion="3.2.18.RELEASE"
+def springSecurityVersion="3.2.3.RELEASE"
+def hibernateVersion = "4.1.9.Final"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.springframework', name: 'spring-core', version: springVersion	
+    compile group: 'org.springframework', name: 'spring-context', version: springVersion
+    compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
+    compile group: 'org.springframework', name: 'spring-tx', version: springVersion
+    compile group: 'org.springframework', name: 'spring-orm', version: springVersion
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: springSecurityVersion
+	compile group: 'org.springframework.security', name: 'spring-security-config', version: springSecurityVersion
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: springSecurityVersion
+	compile group: 'org.springframework.security', name: 'spring-security-taglibs', version: springSecurityVersion
+	
+	
+    compile group: 'org.aspectj', name: 'aspectjrt', version: "1.7.4"
+    compile group: 'org.slf4j', name: 'slf4j-api', version: "1.7.5"
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: "1.7.5"
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: "1.7.5"
+
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: hibernateVersion
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: "1.4"
+
+    compile group: 'javax.inject', name: 'javax.inject', version: "1"
+    compile group: 'javax.servlet', name: 'servlet-api', version: "2.5"
+    compile group: 'javax.servlet.jsp', name: 'jsp-api', version: "2.1"
+    compile group: 'javax.servlet', name: 'jstl', version: "1.2"
+
+    compile group: 'junit', name: 'junit', version: "4.7"
+
+    //    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.0.8'
+    //    compile("org.hibernate:hibernate-validator")
+
+    // Embedded Tomcat plugin for running the WAR
+        def tomcatVersion = '7.0.76'
+
+    compile group: 'com.bmuschko', name: 'gradle-tomcat-plugin', version: '2.5'
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: tomcatVersion
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-logging-juli', version:tomcatVersion
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: tomcatVersion
+
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "2.2.3"
+	
+	
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+
+}
