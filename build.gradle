@@ -1,4 +1,7 @@
 /*
+
+Gradle 3.5 used.
+
  buildscript {
  repositories { jcenter() }
  dependencies { classpath 'com.bmuschko:gradle-tomcat-plugin:2.5' }
