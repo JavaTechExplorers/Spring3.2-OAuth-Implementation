@@ -8,7 +8,8 @@
 		<class>com.myapp.entity.EmployeeEntity</class>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
-		    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+		    <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />  -->
+		    <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />
 		</properties>
 	</persistence-unit>
 

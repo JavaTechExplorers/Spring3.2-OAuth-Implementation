@@ -1,13 +1,22 @@
 package com.myapp.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myapp.service.EmployeeService;
+import com.myapp.service.so.EmployeeSo;
+
 @Controller
 public class HelloController {
+
+	@Autowired
+	private EmployeeService employeeService;
 
 	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
@@ -18,14 +27,26 @@ public class HelloController {
 		return model;
 	}
 
-	@RequestMapping(value = "/data", method = RequestMethod.GET)
+	@RequestMapping(value = "/userHome", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 
 		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Hello World");
-		model.addObject("message", "This is protected page!");
-		
-		model.setViewName("data");
+		model.addObject("title", "Spring Security");
+		model.addObject("message", "You have logged in successfully");
+
+		model.setViewName("home");
+
+		System.out.println("##################### Checking Embedded Database Conn ##################");
+		try {
+			List<EmployeeSo> empList = employeeService.getData(null);
+			for (EmployeeSo employeeSo : empList) {
+
+				System.out.println("Emp Name = " + employeeSo.getEmpName());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return model;
 	}
