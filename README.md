@@ -1,4 +1,4 @@
-# Spring 3.2 - Feature Experiment Project
+# Spring 3.X - Feature Experiment Project
 Use this project as a way to quickly start any new Spring 3.x Feature experiments.
 
 Following are the features implemented at this moment.
