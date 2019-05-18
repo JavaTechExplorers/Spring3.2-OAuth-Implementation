@@ -10,7 +10,6 @@
 
 <!-- 
 	<http auto-config="true" use-expressions="true">
-	
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/index" access="permitAll" />
 		<intercept-url pattern="/login" access="permitAll" />
@@ -21,11 +20,9 @@
 		<intercept-url pattern="/lib/**" access="permitAll" />
 		<intercept-url pattern="/css/**" access="permitAll" />
 		<intercept-url pattern="/accessdenied" access="permitAll" />
-		<intercept-url pattern="/admin**" access="ROLE_USER" />
-				
-		<form-login login-page="/login" default-target-url="/" authentication-failure-url="/accessdenied" />
-		<logout logout-success-url="/logout" />
-		
+		<intercept-url pattern="/**" access="ROLE_USER" />				
+		<form-login login-page="/login" default-target-url="/userHome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password" />
+		<logout logout-success-url="/login?logout" />		
 	</http>
 
 	<authentication-manager
@@ -36,26 +33,22 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
--->
+	-->
 
 	<http auto-config="true">
 		<intercept-url pattern="/admin**" access="ROLE_USER" />
-		<form-login login-page="/login"
-			default-target-url="/userHome"
-			authentication-failure-url="/login?error"
-			username-parameter="username" password-parameter="password" />
+		<form-login login-page="/login"	default-target-url="/userHome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password" />
 		<logout logout-success-url="/login?logout" />
-		<!-- enable csrf protection
-		<csrf />  -->
+		<!-- enable csrf protection <csrf />  -->
 	</http>
 
-
-	<authentication-manager>
+ 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="admin" password="admin" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-	
+
+ 	
 </beans:beans>

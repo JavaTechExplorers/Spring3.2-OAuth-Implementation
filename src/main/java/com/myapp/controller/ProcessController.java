@@ -24,16 +24,16 @@ public class ProcessController {
 	@Autowired
 	private EmployeeService employeeService;
 
-	@RequestMapping(value = "{name}", method = RequestMethod.GET)
-	public @ResponseBody EmployeeSo getShopInJSON(@PathVariable String name) {
-
-		EmployeeSo so = new EmployeeSo();
-		so.setEmpName("1");
-		so.setEmpDesc("1");
-		so.setEmpGender("1");
-
-		return so;
-	}
+//	@RequestMapping(value = "{name}", method = RequestMethod.GET)
+//	public @ResponseBody EmployeeSo getShopInJSON(@PathVariable String name) {
+//
+//		EmployeeSo so = new EmployeeSo();
+//		so.setEmpName("1");
+//		so.setEmpDesc("1");
+//		so.setEmpGender("1");
+//
+//		return so;
+//	}
 
 	@RequestMapping(value = "/getData", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<EmployeeSo> getAllData(@RequestBody EmployeeSo employeeSo) throws Exception {

@@ -8,12 +8,11 @@ set TOMCAT_HOME=F:\Softwares\apache-tomcat-7.0.94
 
 set CATALINA_HOME=%TOMCAT_HOME%
 
-rem rmdir /s /q %TOMCAT_HOME%\work\Catalina\localhost\%WAR_NAME%
+rem rmdir /s /q %TOMCAT_HOME%\work\Catalina\localhost\
 rem rmdir /s /q %TOMCAT_HOME%\webapps\%WAR_NAME%
 rem del %TOMCAT_HOME%\webapps\%WAR_NAME%.war
 
 cd %WORKSPACE_DIR%
-call gradle clean
 call gradle clean build war deploy
 
 
