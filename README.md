@@ -5,5 +5,6 @@ Following are the features implemented at this moment.
 
 1. Project integrated with Bootstrap theme
 2. Login/Logout implemented
+3. Rest Service sample
 
 Note: This project is under development and not completed yet.
