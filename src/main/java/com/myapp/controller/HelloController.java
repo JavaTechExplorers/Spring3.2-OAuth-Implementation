@@ -2,6 +2,7 @@ package com.myapp.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +16,15 @@ import com.myapp.service.so.EmployeeSo;
 @Controller
 public class HelloController {
 
+	private static final Logger logger = Logger.getLogger(HelloController.class);
+
 	@Autowired
 	private EmployeeService employeeService;
 
 	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 
+		logger.debug("#### Inside welcomePage()");
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
 
@@ -29,6 +33,8 @@ public class HelloController {
 
 	@RequestMapping(value = "/userHome", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
+
+		logger.debug("#### Inside adminPage()");
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Spring Security");
@@ -55,6 +61,8 @@ public class HelloController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
+
+		logger.debug("#### Inside login()");
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {

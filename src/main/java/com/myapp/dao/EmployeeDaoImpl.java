@@ -23,6 +23,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	public List<EmployeeSo> getData(EmployeeSo employeeSo) throws Exception {
 
+		System.out.println("##################### Checking Embedded Database Conn ##################");
+
 		List<EmployeeSo> target = new ArrayList<>();
 
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();

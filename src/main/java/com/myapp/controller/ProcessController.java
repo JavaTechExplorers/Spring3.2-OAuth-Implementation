@@ -1,10 +1,12 @@
 package com.myapp.controller;
 
-import java.security.Principal;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,55 +14,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myapp.service.EmployeeService;
 import com.myapp.service.so.EmployeeSo;
-import com.myapp.service.so.UserSo;
 
 @Controller
 @RequestMapping("/ProcessController")
 public class ProcessController {
 
-	private static int flipValue = 0;
+	private static final Logger logger = Logger.getLogger(HelloController.class);
 
 	@Autowired
 	private EmployeeService employeeService;
 
-	@RequestMapping("/user")
-	public Principal user(Principal user) {
-		return user;
+	@RequestMapping(value = "{name}", method = RequestMethod.GET)
+	public @ResponseBody EmployeeSo getShopInJSON(@PathVariable String name) {
+
+		EmployeeSo so = new EmployeeSo();
+		so.setEmpName("1");
+		so.setEmpDesc("1");
+		so.setEmpGender("1");
+
+		return so;
 	}
 
-	@RequestMapping(value = "/getData", method = RequestMethod.POST)
+	@RequestMapping(value = "/getData", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<EmployeeSo> getAllData(@RequestBody EmployeeSo employeeSo) throws Exception {
+
+		logger.debug("#### Inside getAllData()");
 
 		List<EmployeeSo> empList = employeeService.getData(employeeSo);
 
 		return empList;
-	}
-
-	@RequestMapping(value = "/getMultiData", method = RequestMethod.POST)
-	public @ResponseBody Object getMultiData(@RequestBody EmployeeSo employeeSo) throws Exception {
-
-		if (flipValue == 0) {
-			flipValue = 1;
-
-			EmployeeSo emp = new EmployeeSo();
-			emp.setEmpName("Vignesh");
-			emp.setEmpGender("Male");
-			emp.setEmpDesc("Good Emp");
-
-			return emp;
-		} else {
-			flipValue = 0;
-
-			UserSo user = new UserSo();
-			user.setUsername("admin");
-			user.setPassword("admin");
-
-			return user;
-
-		}
-		// List<EmployeeSo> empList = employeeService.getData(employeeSo);
-		// return null;
-		// return empList.get(0);
 	}
 
 	// @RequestMapping(value = "/save", method = RequestMethod.POST)

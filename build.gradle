@@ -1,7 +1,4 @@
 /*
-
-Gradle 3.5 used.
-
  buildscript {
  repositories { jcenter() }
  dependencies { classpath 'com.bmuschko:gradle-tomcat-plugin:2.5' }
@@ -21,7 +18,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 def springVersion="3.2.12.RELEASE"
-def springSecurityVersion="3.2.3.RELEASE"
+def springSecurityVersion="3.2.8.RELEASE"
 def hibernateVersion = "4.1.9.Final"
 
 def tomcatHome = "F:/Softwares/apache-tomcat-7.0.94/webapps/"
@@ -73,8 +70,9 @@ dependencies {
 	//compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-logging-juli', version:tomcatVersion
 	//compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: tomcatVersion
 
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "2.2.3"
-
+	compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+	compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
+	
 	// tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",			"org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",			"org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 }
 
