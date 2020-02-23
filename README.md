@@ -1,10 +1,4 @@
-# Spring 3.X - Feature Experiment Project
-Use this project as a way to quickly start any new Spring 3.x Feature experiments.
+# Spring - Open Authentication Implementation
 
-Following are the features implemented at this moment.
-
-1. Project integrated with Bootstrap theme
-2. Login/Logout implemented
-3. Rest Service sample
 
 Note: This project is under development and not completed yet.
